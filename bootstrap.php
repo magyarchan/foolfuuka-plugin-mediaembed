@@ -4,11 +4,11 @@ use Foolz\FoolFrame\Model\Autoloader;
 use Foolz\FoolFrame\Model\Context;
 use Foolz\Plugin\Event;
 
-class HHVM_ColorFilter
+class HHVM_MediaEmbed
 {
     public function run()
     {
-        Event::forge('Foolz\Plugin\Plugin::execute#foolz/foolfuuka-plugin-colorfilter')
+        Event::forge('Foolz\Plugin\Plugin::execute#foolz/foolfuuka-plugin-mediaembed')
             ->setCall(function($result) {
 
                 /* @var Context $context */
@@ -16,7 +16,11 @@ class HHVM_ColorFilter
                 /** @var Autoloader $autoloader */
                 $autoloader = $context->getService('autoloader');
 
-                $autoloader->addClass('Foolz\FoolFuuka\Plugins\ColorFilter\Model\Filter', __DIR__.'/classes/model/filter.php');
+                $autoloader->addClass('Foolz\FoolFuuka\Plugins\MediaEmbed\Model\Filtr', __DIR__.'/classes/model/filter.php');
+
+
+
+
 
                 Event::forge('Foolz\FoolFuuka\Model\Comment::processComment#var.processedComment')
                     ->setCall('Foolz\FoolFuuka\Plugins\ColorFilter\Model\Filter::outfilter')
@@ -33,9 +37,18 @@ class HHVM_ColorFilter
                         $structure['plugin_colorfilter_enable'] = [
                             'database' => true,
                             'boards_preferences' => true,
-                            'type' => 'checkbox',
+                :            'type' => 'checkbox',
                             'help' => _i('KÖCSÖG KÖCSÖG KÖCSÖG?')
                         ];
+//                        $structure['plugin_colorfilter_filtertext'] = [
+//                            'database' => true,
+//                            'boards_preferences' => true,
+//                            'type' => 'input',
+//                            'class' => 'span3',
+//                            'label' => 'Words to filter',
+//                            'help' => _i(''),
+//                            'default_value' => false
+//                        ];    
                         $result->setParam('structure', $structure)->set($structure);
                     })->setPriority(4);
             });
