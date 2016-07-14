@@ -34,7 +34,7 @@ class HHVM_MediaEmbed
                         $structure['plugin_embed_enable'] = [ //fuck I'm too wasted to make this right this time
                             'database' => true,
                             'boards_preferences' => true,
-                :            'type' => 'checkbox',
+                            'type' => 'checkbox',
                             'help' => _i('Enable media embed')
                         ];
                         $result->setParam('structure', $structure)->set($structure);
