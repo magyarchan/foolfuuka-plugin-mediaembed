@@ -31,7 +31,7 @@ class HHVM_MediaEmbed
                 Event::forge('Foolz\FoolFuuka\Model\RadixCollection::structure#var.structure')
                     ->setCall(function($result) {
                         $structure = $result->getParam('structure');
-                        $structure['plugin_embed_enable'] = [ //fuck I'm too wasted to make this right this time
+                        $structure['plugin_mediaembed_enable'] = [ //fuck I'm too wasted to make this right this time
                             'database' => true,
                             'boards_preferences' => true,
                             'type' => 'checkbox',
