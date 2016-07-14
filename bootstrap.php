@@ -16,43 +16,31 @@ class HHVM_MediaEmbed
                 /** @var Autoloader $autoloader */
                 $autoloader = $context->getService('autoloader');
 
-                $autoloader->addClass('Foolz\FoolFuuka\Plugins\MediaEmbed\Model\Filtr', __DIR__.'/classes/model/filter.php');
-
-
-
-
+                $autoloader->addClass('Foolz\FoolFuuka\Plugins\MediaEmbed\Model\Embed', __DIR__.'/classes/model/embed.php');
 
                 Event::forge('Foolz\FoolFuuka\Model\Comment::processComment#var.processedComment')
-                    ->setCall('Foolz\FoolFuuka\Plugins\ColorFilter\Model\Filter::outfilter')
+                    ->setCall('Foolz\FoolFuuka\Plugins\MediaEmbed\Model\Embed::filter')
                     ->setPriority(4);
 
+		/*
                 Event::forge('Foolz\FoolFuuka\Model\CommentInsert::insert#obj.afterInputCheck')
-                    ->setCall('Foolz\FoolFuuka\Plugins\ColorFilter\Model\Filter::infilter')
-                    ->setPriority(4);
+                    ->setCall('Foolz\FoolFuuka\Plugins\MediaEmbed\Model\Embed::infilter')
+                    ->setPriority(4); */
 
 
                 Event::forge('Foolz\FoolFuuka\Model\RadixCollection::structure#var.structure')
                     ->setCall(function($result) {
                         $structure = $result->getParam('structure');
-                        $structure['plugin_colorfilter_enable'] = [
+                        $structure['plugin_embed_enable'] = [ //fuck I'm too wasted to make this right this time
                             'database' => true,
                             'boards_preferences' => true,
                 :            'type' => 'checkbox',
-                            'help' => _i('KÖCSÖG KÖCSÖG KÖCSÖG?')
+                            'help' => _i('Enable media embed')
                         ];
-//                        $structure['plugin_colorfilter_filtertext'] = [
-//                            'database' => true,
-//                            'boards_preferences' => true,
-//                            'type' => 'input',
-//                            'class' => 'span3',
-//                            'label' => 'Words to filter',
-//                            'help' => _i(''),
-//                            'default_value' => false
-//                        ];    
                         $result->setParam('structure', $structure)->set($structure);
                     })->setPriority(4);
             });
     }
 }
 
-(new HHVM_ColorFilter())->run();
+(new HHVM_MediaEmbed())->run();

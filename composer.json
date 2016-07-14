@@ -1,10 +1,10 @@
 {
-	"name": "foolz/foolfuuka-plugin-colorfilter",
+	"name": "foolz/foolfuuka-plugin-mediaembed",
 	"type": "foolz-foolfuuka-plugin",
-	"description": "Randomized color filter",
-	"version": "0.3.0",
-	"keywords": ["fake", "mock"],
-	"homepage": "http://foolz.us",
+	"description": "Embedding for various media sites",
+	"version": "0.1.0",
+	"keywords": ["media", "embedding"],
+	"homepage": "http://magyarchan.net",
 	"license": "Apache-2.0",
 	"authors": [{"name": "sph", "email": "sph@magyarchan.net"}],
 	"support": {
@@ -17,8 +17,8 @@
 	},
 
 	"extra": {
-		"name": "ColorFilter",
-		"slug": "colorfilter",
+		"name": "MediaEmbed",
+		"slug": "mediaembed",
 		"module": "foolfuuka"
 	}
 }
