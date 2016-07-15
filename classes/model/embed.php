@@ -16,9 +16,9 @@ class Embed
     $data->comment->comment = preg_replace_callback('/(\[(youtube)\=(.*)\/\])/i', 
       function($hit)
       {
-        switch ($hit[1]) {
+        switch ($hit[2]) {
           case "youtube":
-            $srcurl = "https://www.youtube.com/embed/".$hit[2];
+            $srcurl = "https://www.youtube.com/embed/".$hit[3];
             break;
           //you may add another video provider here
           default:
