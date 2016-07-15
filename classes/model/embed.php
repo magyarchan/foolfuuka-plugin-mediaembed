@@ -13,7 +13,7 @@ class Embed
     {
       return null;
     }
-    $data->comment->comment = preg_replace_callback('/(\[(youtube)\=(.*)\/\])/i', 
+    $data->comment->comment = preg_replace_callback('/(\[(youtube)\=(.*?)\/?\])/gi', 
       function($hit)
       {
         switch ($hit[2]) {
